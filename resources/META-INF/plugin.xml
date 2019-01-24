@@ -25,7 +25,7 @@
   -->
 
   <extensions defaultExtensionNs="com.intellij">
-    <toolWindow id="mbg" icon="/icons/gerrit_13x13.png" anchor="bottom"
+    <toolWindow id="mbg" icon="/icons/leaves.png" anchor="bottom"
                 factoryClass="com.mbg.MbgToolWindowFactory"/>
   </extensions>
 

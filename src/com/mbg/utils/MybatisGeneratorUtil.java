@@ -30,6 +30,15 @@ public class MybatisGeneratorUtil {
         if(DatabaseTypeEnum.MYSQL.equals(mybatisGeneratorConfig.getDatabaseType())){
             specificDatabaseUrl="jdbc:mysql://";
             driverClassName="com.mysql.jdbc.Driver";
+            //mysql分页
+            PluginConfiguration pluginConfiguration=new PluginConfiguration();
+            pluginConfiguration.setConfigurationType("com.mbg.plugin.MysqlPagePlugin");
+            context.addPluginConfiguration(pluginConfiguration);
+        }else{
+            //postgresql分页
+            PluginConfiguration pluginConfiguration=new PluginConfiguration();
+            pluginConfiguration.setConfigurationType("com.mbg.plugin.PostgresqlPagePlugin");
+            context.addPluginConfiguration(pluginConfiguration);
         }
         String url =  specificDatabaseUrl+ mybatisGeneratorConfig.getHost() + ":" + mybatisGeneratorConfig.getPort() + "/" + mybatisGeneratorConfig.getDatabaseName();
         jdbcConnectionConfiguration.setDriverClass(driverClassName);
@@ -75,6 +84,8 @@ public class MybatisGeneratorUtil {
         if (isValid(mapperName)) {
             tableConfiguration.setMapperName(mapperName);
         }
+//        GeneratedKey generatedKey=new GeneratedKey("id","MySql",false,"pre");
+//        tableConfiguration.setGeneratedKey(generatedKey);
 
         context.setId("pg");
         context.setTargetRuntime("MyBatis3");
